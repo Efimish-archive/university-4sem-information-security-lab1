@@ -12,6 +12,13 @@ const decoded_text = document.getElementById('decoded-text') as HTMLInputElement
 const decoding_key = document.getElementById('decoding-key') as HTMLInputElement;
 const generate_decoding_key = document.getElementById('generate-decoding-key') as HTMLButtonElement;
 
+function sanitizeInput(str: string): string {
+    return str.toUpperCase().replace(/[^A-Z]/g, '').slice(0, 10);
+}
+
+text_to_encode.oninput = () => {
+    text_to_encode.value = sanitizeInput(text_to_encode.value);
+}
 encode_button.onclick = () => {
     try {
         encoded_text.value = encode(text_to_encode.value, encoding_key.value);
@@ -23,6 +30,10 @@ generate_encoding_key.onclick = () => {
     encoding_key.value = generateKeyString(text_to_encode.value.length);
 }
 
+
+text_to_decode.oninput = () => {
+    text_to_decode.value = sanitizeInput(text_to_decode.value);
+}
 decode_button.onclick = () => {
     try {
         decoded_text.value = decode(text_to_decode.value, decoding_key.value);
