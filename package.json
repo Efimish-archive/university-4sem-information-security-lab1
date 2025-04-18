@@ -1,5 +1,5 @@
 {
-  "name": "1",
+  "name": "hill-cipher",
   "module": "src/main.ts",
   "type": "module",
   "scripts": {
